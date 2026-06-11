@@ -5,7 +5,7 @@
 test "T43: saga all steps succeed" {
   let storage = MemoryStorage::new()
   let engine = Engine::new(storage)
-  let mut call_log : Array[String] = []
+  let call_log : Array[String] = Array::new()
 
   let s = Saga::new(engine, storage, "test-saga")
     .step("s1",
@@ -28,7 +28,7 @@ test "T43: saga all steps succeed" {
 test "T44: saga failure triggers compensation" {
   let storage = MemoryStorage::new()
   let engine = Engine::new(storage)
-  let mut call_log : Array[String] = []
+  let call_log : Array[String] = Array::new()
 
   let s = Saga::new(engine, storage, "fail-saga")
     .step("s1",
