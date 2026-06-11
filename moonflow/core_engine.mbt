@@ -99,6 +99,11 @@ fn[S : Storage] Engine::execute_workflow(
           Err(err) => { self.store_event(wf_id, WorkflowEvent::WorkflowFailed(wf_id, err_to_string(err), @env.now().to_int64())); return }
         }
       }
+      SubWorkflow(sub_name) => {
+        self.store_event(wf_id, WorkflowEvent::StepCompleted(wf_id, node.name, current_input, @env.now().to_int64()))
+        step_index = step_index + 1
+        ignore(sub_name)
+      }
     }
   }
   self.store_event(wf_id, WorkflowEvent::WorkflowCompleted(wf_id, current_input, @env.now().to_int64()))
