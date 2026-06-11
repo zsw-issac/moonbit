@@ -1,0 +1,20 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/async_examples/udp_ping_pong"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub async fn main_prog(Printer) -> Unit
+
+// Errors
+type ServerTerminate derive(@debug.Debug)
+
+// Types and methods
+pub(all) struct Printer((String) -> Unit)
+
+// Type aliases
+
+// Traits
+

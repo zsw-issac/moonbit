@@ -1,0 +1,5 @@
+members = [
+  ".",
+  "./examples",
+  "./test_programs",
+]

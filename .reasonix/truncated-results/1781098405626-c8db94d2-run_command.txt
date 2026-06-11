@@ -1,0 +1,773 @@
+$ /root/.moon/bin/moon -C moonflow build 2>&1
+[exit 255]
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/context.mbt:4:17 ]
+   │
+ 4 │   workflow_id : WorkflowId
+   │                 ─────┬────  
+   │                      ╰────── The type WorkflowId is undefined.
+───╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/context.mbt:12:11 ]
+    │
+ 12 │   wf_id : WorkflowId,
+    │           ─────┬────  
+    │                ╰────── The type WorkflowId is undefined.
+────╯
+Error: [4014]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/context.mbt:21:18 ]
+    │
+ 21 │     started_at: (@env.now().to_int() : Int64),
+    │                  ─────────┬─────────  
+    │                           ╰─────────── Expr Type Mismatch
+        has type : Int
+        wanted   : Int64
+────╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:5:34 ]
+   │
+ 5 │   event_logs : Map[String, Array[WorkflowEvent]]
+   │                                  ──────┬──────  
+   │                                        ╰──────── The type WorkflowEvent is undefined.
+───╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:6:27 ]
+   │
+ 6 │   snapshots : Map[String, WorkflowSnapshot]
+   │                           ────────┬───────  
+   │                                   ╰───────── The type WorkflowSnapshot is undefined.
+───╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:10:17 ]
+    │
+ 10 │   { event_logs: Map::new(), snapshots: Map::new() }
+    │                 ────┬───  
+    │                     ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:10:40 ]
+    │
+ 10 │   { event_logs: Map::new(), snapshots: Map::new() }
+    │                                        ────┬───  
+    │                                            ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:15:8 ]
+    │
+ 15 │   id : WorkflowId,
+    │        ─────┬────  
+    │             ╰────── The type WorkflowId is undefined.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:16:11 ]
+    │
+ 16 │   event : WorkflowEvent
+    │           ──────┬──────  
+    │                 ╰──────── The type WorkflowEvent is undefined.
+────╯
+Error: [0015]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:21:15 ]
+    │
+ 21 │       let mut copy = arr
+    │               ──┬─  
+    │                 ╰─── Error Warning (unused_mut): The mutability of 'copy' is never used, try remove `mut`.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:32:8 ]
+    │
+ 32 │   id : WorkflowId
+    │        ─────┬────  
+    │             ╰────── The type WorkflowId is undefined.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:33:12 ]
+    │
+ 33 │ ) -> Array[WorkflowEvent] {
+    │            ──────┬──────  
+    │                  ╰──────── The type WorkflowEvent is undefined.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:42:8 ]
+    │
+ 42 │   id : WorkflowId,
+    │        ─────┬────  
+    │             ╰────── The type WorkflowId is undefined.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:43:14 ]
+    │
+ 43 │   snapshot : WorkflowSnapshot
+    │              ────────┬───────  
+    │                      ╰───────── The type WorkflowSnapshot is undefined.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:50:8 ]
+    │
+ 50 │   id : WorkflowId
+    │        ─────┬────  
+    │             ╰────── The type WorkflowId is undefined.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:51:6 ]
+    │
+ 51 │ ) -> WorkflowSnapshot? {
+    │      ────────┬───────  
+    │              ╰───────── The type WorkflowSnapshot is undefined.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:57:12 ]
+    │
+ 57 │ ) -> Array[WorkflowId] {
+    │            ─────┬────  
+    │                 ╰────── The type WorkflowId is undefined.
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/memory_storage.mbt:58:38 ]
+    │
+ 58 │   self.event_logs.keys().map(fn(k) { WorkflowId::new(k) }).to_array()
+    │                                      ─────┬────  
+    │                                           ╰────── The type/trait WorkflowId is not found.
+────╯
+Warning: [0029]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/moon.pkg:4:3 ]
+   │
+ 4 │   "moonbitlang/moonflow/src/types",
+   │   ────────────────┬───────────────  
+   │                   ╰───────────────── Warning (unused_package): Unused package 'moonbitlang/moonflow/src/types'
+───╯
+Warning: [0009]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/timer.mbt:10:12 ]
+    │
+ 10 │ pub struct DefaultTimer
+    │            ──────┬─────  
+    │                  ╰─────── Warning (struct_never_constructed): The struct DefaultTimer is never constructed
+────╯
+Error: [3002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/timer.mbt:10:24 ]
+    │
+ 10 │ pub struct DefaultTimer
+    │                        │ 
+    │                        ╰─ Unexpected line break here, missing `{` at the end of this line.
+────╯
+Error: [4199]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/timer.mbt:13:3 ]
+    │
+ 13 │   DefaultTimer
+    │   ──────┬─────  
+    │         ╰─────── The struct `DefaultTimer` does not declare a constructor, so `DefaultTimer(..)` cannot be used.
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/timer.mbt:16:26 ]
+    │
+ 16 │ pub fn DefaultTimer::now(self : DefaultTimer) -> Int64 {
+    │                          ──┬─  
+    │                            ╰─── Warning (unused_value): Unused variable 'self'
+────╯
+Error: [4014]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/timer.mbt:17:4 ]
+    │
+ 17 │   (@env.now().to_int() : Int64)
+    │    ─────────┬─────────  
+    │             ╰─────────── Expr Type Mismatch
+        has type : Int
+        wanted   : Int64
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/timer.mbt:20:28 ]
+    │
+ 20 │ pub fn DefaultTimer::sleep(self : DefaultTimer, ms : Int) -> Unit {
+    │                            ──┬─  
+    │                              ╰─── Warning (unused_value): Unused variable 'self'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/runtime/timer.mbt:20:49 ]
+    │
+ 20 │ pub fn DefaultTimer::sleep(self : DefaultTimer, ms : Int) -> Unit {
+    │                                                 ─┬  
+    │                                                  ╰── Warning (unused_value): Unused variable 'ms'
+────╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/event_log.mbt:4:19 ]
+   │
+ 4 │   WorkflowStarted(WorkflowId, String, Json, Int64)
+   │                   ─────┬────  
+   │                        ╰────── The type WorkflowId is undefined.
+───╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/event_log.mbt:5:15 ]
+   │
+ 5 │   StepStarted(WorkflowId, String, Int, Int64)
+   │               ─────┬────  
+   │                    ╰────── The type WorkflowId is undefined.
+───╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/event_log.mbt:6:17 ]
+   │
+ 6 │   StepCompleted(WorkflowId, String, Json, Int64)
+   │                 ─────┬────  
+   │                      ╰────── The type WorkflowId is undefined.
+───╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/event_log.mbt:7:14 ]
+   │
+ 7 │   StepFailed(WorkflowId, String, String, Int, Int64)
+   │              ─────┬────  
+   │                   ╰────── The type WorkflowId is undefined.
+───╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/event_log.mbt:8:16 ]
+   │
+ 8 │   StepRetrying(WorkflowId, String, Int, Int, Int64)
+   │                ─────┬────  
+   │                     ╰────── The type WorkflowId is undefined.
+───╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/event_log.mbt:9:21 ]
+   │
+ 9 │   WorkflowCompleted(WorkflowId, Json, Int64)
+   │                     ─────┬────  
+   │                          ╰────── The type WorkflowId is undefined.
+───╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/event_log.mbt:10:18 ]
+    │
+ 10 │   WorkflowFailed(WorkflowId, String, Int64)
+    │                  ─────┬────  
+    │                       ╰────── The type WorkflowId is undefined.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/event_log.mbt:16:17 ]
+    │
+ 16 │   workflow_id : WorkflowId
+    │                 ─────┬────  
+    │                      ╰────── The type WorkflowId is undefined.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/event_log.mbt:20:27 ]
+    │
+ 20 │ pub fn EventLog::new(id : WorkflowId) -> EventLog {
+    │                           ─────┬────  
+    │                                ╰────── The type WorkflowId is undefined.
+────╯
+Error: [0015]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/event_log.mbt:25:11 ]
+    │
+ 25 │   let mut new_events = self.events
+    │           ─────┬────  
+    │                ╰────── Error Warning (unused_mut): The mutability of 'new_events' is never used, try remove `mut`.
+────╯
+Warning: [0029]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/moon.pkg:3:3 ]
+   │
+ 3 │   "moonbitlang/moonflow/src/types",
+   │   ────────────────┬───────────────  
+   │                   ╰───────────────── Warning (unused_package): Unused package 'moonbitlang/moonflow/src/types'
+───╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:4:17 ]
+   │
+ 4 │   workflow_id : WorkflowId
+   │                 ─────┬────  
+   │                      ╰────── The type WorkflowId is undefined.
+───╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:5:16 ]
+   │
+ 5 │   mut status : WorkflowStatus
+   │                ───────┬──────  
+   │                       ╰──────── The type WorkflowStatus is undefined.
+───╯
+Error: [4032]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:7:34 ]
+   │
+ 7 │   mut failed_steps : Map[String, WorkflowError]
+   │                                  ──────┬──────  
+   │                                        ╰──────── The type WorkflowError is undefined.
+───╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:12:41 ]
+    │
+ 12 │ pub fn WorkflowExecutionState::new(id : WorkflowId) -> WorkflowExecutionState {
+    │                                         ─────┬────  
+    │                                              ╰────── The type WorkflowId is undefined.
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:16:22 ]
+    │
+ 16 │     completed_steps: Map::new(),
+    │                      ────┬───  
+    │                          ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:17:19 ]
+    │
+ 17 │     failed_steps: Map::new(),
+    │                   ────┬───  
+    │                       ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:19:20 ]
+    │
+ 19 │     step_attempts: Map::new(),
+    │                    ────┬───  
+    │                        ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:26:87 ]
+    │
+ 26 │ pub fn replay_events(events : Array[WorkflowEvent]) -> Result[WorkflowExecutionState, WorkflowError] {
+    │                                                                                       ──────┬──────  
+    │                                                                                             ╰──────── The type WorkflowError is undefined.
+────╯
+Error: [4014]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:29:18 ]
+    │
+ 29 │     state = Some(apply_event(state, event)?)
+    │                  ────────────┬────────────  
+    │                              ╰────────────── Expr Type Mismatch
+        has type : Result[WorkflowExecutionState, ?]
+        wanted   : WorkflowExecutionState
+────╯
+Error: [3002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:29:43 ]
+    │
+ 29 │     state = Some(apply_event(state, event)?)
+    │                                           ┬  
+    │                                           ╰── Parse error, unexpected token `?`, you may expect `,` or `)`.
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:33:17 ]
+    │
+ 33 │     None => Err(WorkflowError::SerializationError("empty event log"))
+    │                 ──────┬──────  
+    │                       ╰──────── The type/trait WorkflowError is not found.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:40:37 ]
+    │
+ 40 │ ) -> Result[WorkflowExecutionState, WorkflowError] {
+    │                                     ──────┬──────  
+    │                                           ╰──────── The type WorkflowError is undefined.
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:42:47 ]
+    │
+ 42 │     (None, WorkflowEvent::WorkflowStarted(id, name, input, ts)) => {
+    │                                               ──┬─  
+    │                                                 ╰─── Warning (unused_value): Unused variable 'name'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:42:53 ]
+    │
+ 42 │     (None, WorkflowEvent::WorkflowStarted(id, name, input, ts)) => {
+    │                                                     ──┬──  
+    │                                                       ╰──── Warning (unused_value): Unused variable 'input'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:42:60 ]
+    │
+ 42 │     (None, WorkflowEvent::WorkflowStarted(id, name, input, ts)) => {
+    │                                                            ─┬  
+    │                                                             ╰── Warning (unused_value): Unused variable 'ts'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:45:42 ]
+    │
+ 45 │     (Some(s), WorkflowEvent::StepStarted(id, step, attempt, ts)) => {
+    │                                          ─┬  
+    │                                           ╰── Warning (unused_value): Unused variable 'id'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:45:61 ]
+    │
+ 45 │     (Some(s), WorkflowEvent::StepStarted(id, step, attempt, ts)) => {
+    │                                                             ─┬  
+    │                                                              ╰── Warning (unused_value): Unused variable 'ts'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:50:44 ]
+    │
+ 50 │     (Some(s), WorkflowEvent::StepCompleted(id, step, output, ts)) => {
+    │                                            ─┬  
+    │                                             ╰── Warning (unused_value): Unused variable 'id'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:50:62 ]
+    │
+ 50 │     (Some(s), WorkflowEvent::StepCompleted(id, step, output, ts)) => {
+    │                                                              ─┬  
+    │                                                               ╰── Warning (unused_value): Unused variable 'ts'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:55:41 ]
+    │
+ 55 │     (Some(s), WorkflowEvent::StepFailed(id, step, err, attempt, ts)) => {
+    │                                         ─┬  
+    │                                          ╰── Warning (unused_value): Unused variable 'id'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:55:56 ]
+    │
+ 55 │     (Some(s), WorkflowEvent::StepFailed(id, step, err, attempt, ts)) => {
+    │                                                        ───┬───  
+    │                                                           ╰───── Warning (unused_value): Unused variable 'attempt'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:55:65 ]
+    │
+ 55 │     (Some(s), WorkflowEvent::StepFailed(id, step, err, attempt, ts)) => {
+    │                                                                 ─┬  
+    │                                                                  ╰── Warning (unused_value): Unused variable 'ts'
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:56:30 ]
+    │
+ 56 │       s.failed_steps[step] = WorkflowError::StepFailed(step, err)
+    │                              ──────┬──────  
+    │                                    ╰──────── The type/trait WorkflowError is not found.
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:59:43 ]
+    │
+ 59 │     (Some(s), WorkflowEvent::StepRetrying(id, step, attempt, delay, ts)) => {
+    │                                           ─┬  
+    │                                            ╰── Warning (unused_value): Unused variable 'id'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:59:62 ]
+    │
+ 59 │     (Some(s), WorkflowEvent::StepRetrying(id, step, attempt, delay, ts)) => {
+    │                                                              ──┬──  
+    │                                                                ╰──── Warning (unused_value): Unused variable 'delay'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:59:69 ]
+    │
+ 59 │     (Some(s), WorkflowEvent::StepRetrying(id, step, attempt, delay, ts)) => {
+    │                                                                     ─┬  
+    │                                                                      ╰── Warning (unused_value): Unused variable 'ts'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:63:48 ]
+    │
+ 63 │     (Some(s), WorkflowEvent::WorkflowCompleted(id, output, ts)) => {
+    │                                                ─┬  
+    │                                                 ╰── Warning (unused_value): Unused variable 'id'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:63:52 ]
+    │
+ 63 │     (Some(s), WorkflowEvent::WorkflowCompleted(id, output, ts)) => {
+    │                                                    ───┬──  
+    │                                                       ╰──── Warning (unused_value): Unused variable 'output'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:63:60 ]
+    │
+ 63 │     (Some(s), WorkflowEvent::WorkflowCompleted(id, output, ts)) => {
+    │                                                            ─┬  
+    │                                                             ╰── Warning (unused_value): Unused variable 'ts'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:67:45 ]
+    │
+ 67 │     (Some(s), WorkflowEvent::WorkflowFailed(id, err, ts)) => {
+    │                                             ─┬  
+    │                                              ╰── Warning (unused_value): Unused variable 'id'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:67:49 ]
+    │
+ 67 │     (Some(s), WorkflowEvent::WorkflowFailed(id, err, ts)) => {
+    │                                                 ─┬─  
+    │                                                  ╰─── Warning (unused_value): Unused variable 'err'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:67:54 ]
+    │
+ 67 │     (Some(s), WorkflowEvent::WorkflowFailed(id, err, ts)) => {
+    │                                                      ─┬  
+    │                                                       ╰── Warning (unused_value): Unused variable 'ts'
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/replay.mbt:71:14 ]
+    │
+ 71 │     _ => Err(WorkflowError::SerializationError("invalid event sequence"))
+    │              ──────┬──────  
+    │                    ╰──────── The type/trait WorkflowError is not found.
+────╯
+Error: [4015]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:12:26 ]
+    │
+ 12 │   let event_count_json = Json::from_int(self.event_count)
+    │                          ───────┬──────  
+    │                                 ╰──────── Type Json has no method from_int.
+────╯
+Error: [4015]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:13:25 ]
+    │
+ 13 │   let created_at_json = Json::from_int(self.created_at.to_int())
+    │                         ───────┬──────  
+    │                                ╰──────── Type Json has no method from_int.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:14:3 ]
+    │
+ 14 │   Json::Object([
+    │   ──────┬─────  
+    │         ╰─────── Cannot create values of the read-only type: Object.
+────╯
+Error: [4014]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:14:16 ]
+    │
+ 14 │ ╭─▶   Json::Object([
+    ┆ ┆   
+ 19 │ ├─▶   ])
+    │ │          
+    │ ╰────────── Expr Type Mismatch
+        has type : Array[(String, Json)]
+        wanted   : Map[String, Json]
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:15:21 ]
+    │
+ 15 │     ("workflow_id", Json::String(self.workflow_id.value)),
+    │                     ──────┬─────  
+    │                           ╰─────── Cannot create values of the read-only type: String.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:22:77 ]
+    │
+ 22 │ pub fn WorkflowSnapshot::from_json(json : Json) -> Result[WorkflowSnapshot, WorkflowError] {
+    │                                                                             ──────┬──────  
+    │                                                                                   ╰──────── The type WorkflowError is undefined.
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:26:34 ]
+    │
+ 26 │         Some(Json::String(v)) => WorkflowId::new(v)
+    │                                  ─────┬────  
+    │                                       ╰────── The type/trait WorkflowId is not found.
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:27:25 ]
+    │
+ 27 │         _ => return Err(WorkflowError::SerializationError("missing workflow_id"))
+    │                         ──────┬──────  
+    │                               ╰──────── The type/trait WorkflowError is not found.
+────╯
+Error: [3002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:30:38 ]
+    │
+ 30 │         Some(s) => state_from_json(s)?
+    │                                      ┬  
+    │                                      ╰── Parse error, unexpected token `?`, you may expect `;` or `}`.
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:31:28 ]
+    │
+ 31 │         None => return Err(WorkflowError::SerializationError("missing state"))
+    │                            ──────┬──────  
+    │                                  ╰──────── The type/trait WorkflowError is not found.
+────╯
+Warning: [0021]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:34:14 ]
+    │
+ 34 │         Some(Json::Number(n)) => n.to_int()
+    │              ───────┬───────  
+    │                     ╰───────── Warning (missing_pattern_arguments): The argument(s) repr of constructor Number are omitted (To ignore them, add ".." to the end of argument list).
+────╯
+Warning: [0021]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:38:14 ]
+    │
+ 38 │         Some(Json::Number(n)) => n.to_int()
+    │              ───────┬───────  
+    │                     ╰───────── Warning (missing_pattern_arguments): The argument(s) repr of constructor Number are omitted (To ignore them, add ".." to the end of argument list).
+────╯
+Error: [4014]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:43:16 ]
+    │
+ 43 │         state: state,
+    │                ──┬──  
+    │                  ╰──── Expr Type Mismatch
+        has type : Result[WorkflowExecutionState, ?]
+        wanted   : WorkflowExecutionState
+────╯
+Error: [4014]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:45:21 ]
+    │
+ 45 │         created_at: created_at,
+    │                     ─────┬────  
+    │                          ╰────── Expr Type Mismatch
+        has type : Int
+        wanted   : Int64
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:48:14 ]
+    │
+ 48 │     _ => Err(WorkflowError::SerializationError("expected object"))
+    │              ──────┬──────  
+    │                    ╰──────── The type/trait WorkflowError is not found.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:53:14 ]
+    │
+ 53 │   let comp = Json::Object(
+    │              ──────┬─────  
+    │                    ╰─────── Cannot create values of the read-only type: Object.
+────╯
+Error: [4015]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:54:11 ]
+    │
+ 54 │     state.completed_states().map(fn(k, v) { (k, v) })
+    │           ────────┬───────  
+    │                   ╰───────── Type WorkflowExecutionState has no method completed_states.
+────╯
+Warning: [0013]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:54:30 ]
+    │
+ 54 │     state.completed_states().map(fn(k, v) { (k, v) })
+    │                              ─┬─  
+    │                               ╰─── Warning (unresolved_type_variable): The type of this expression is ((Unit, _/0) -> (Unit, _/0)) -> Map[String, Json], which contains unresolved type variables. The type variable is default to Unit.
+────╯
+Warning: [0013]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:54:30 ]
+    │
+ 54 │     state.completed_states().map(fn(k, v) { (k, v) })
+    │                              ─┬─  
+    │                               ╰─── Warning (unresolved_type_variable): The type of this expression is ((_/0, _/1) -> (_/0, _/1)) -> Map[String, Json], which contains unresolved type variables. The type variable is default to Unit.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:56:14 ]
+    │
+ 56 │   let fail = Json::Object(
+    │              ──────┬─────  
+    │                    ╰─────── Cannot create values of the read-only type: Object.
+────╯
+Error: [4015]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:57:11 ]
+    │
+ 57 │     state.failed_states().map(fn(k, v) {
+    │           ──────┬──────  
+    │                 ╰──────── Type WorkflowExecutionState has no method failed_states.
+────╯
+Warning: [0013]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:57:27 ]
+    │
+ 57 │     state.failed_states().map(fn(k, v) {
+    │                           ─┬─  
+    │                            ╰─── Warning (unresolved_type_variable): The type of this expression is ((_/0, ?) -> (_/0, Json)) -> Map[String, Json], which contains unresolved type variables. The type variable is default to Unit.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:58:11 ]
+    │
+ 58 │       (k, Json::String(err_to_string(v)))
+    │           ──────┬─────  
+    │                 ╰─────── Cannot create values of the read-only type: String.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:61:3 ]
+    │
+ 61 │   Json::Object([
+    │   ──────┬─────  
+    │         ╰─────── Cannot create values of the read-only type: Object.
+────╯
+Error: [4014]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:61:16 ]
+    │
+ 61 │ ╭─▶   Json::Object([
+    ┆ ┆   
+ 67 │ ├─▶   ])
+    │ │          
+    │ ╰────────── Expr Type Mismatch
+        has type : Array[(String, Json)]
+        wanted   : Map[String, Json]
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:62:21 ]
+    │
+ 62 │     ("workflow_id", Json::String(state.workflow_id.value)),
+    │                     ──────┬─────  
+    │                           ╰─────── Cannot create values of the read-only type: String.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:63:16 ]
+    │
+ 63 │     ("status", Json::String(status_to_string(state.status))),
+    │                ──────┬─────  
+    │                      ╰─────── Cannot create values of the read-only type: String.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:66:22 ]
+    │
+ 66 │     ("current_step", Json::String(state.current_step)),
+    │                      ──────┬─────  
+    │                            ╰─────── Cannot create values of the read-only type: String.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:70:67 ]
+    │
+ 70 │ fn state_from_json(json : Json) -> Result[WorkflowExecutionState, WorkflowError] {
+    │                                                                   ──────┬──────  
+    │                                                                         ╰──────── The type WorkflowError is undefined.
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:74:34 ]
+    │
+ 74 │         Some(Json::String(v)) => WorkflowId::new(v)
+    │                                  ─────┬────  
+    │                                       ╰────── The type/trait WorkflowId is not found.
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:75:25 ]
+    │
+ 75 │         _ => return Err(WorkflowError::SerializationError("missing workflow_id"))
+    │                         ──────┬──────  
+    │                               ╰──────── The type/trait WorkflowError is not found.
+────╯
+Error: [0015]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:85:15 ]
+    │
+ 85 │       let mut state = WorkflowExecutionState::new(wf_id)
+    │               ──┬──  
+    │                 ╰──── Error Warning (unused_mut): The mutability of 'state' is never used, try remove `mut`.
+────╯
+Error: [4024]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:90:14 ]
+    │
+ 90 │     _ => Err(WorkflowError::SerializationError("expected object"))
+    │              ──────┬──────  
+    │                    ╰──────── The type/trait WorkflowError is not found.
+────╯
+Error: [4032]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:94:25 ]
+    │
+ 94 │ fn status_to_string(s : WorkflowStatus) -> String {
+    │                         ───────┬──────  
+    │                                ╰──────── The type WorkflowStatus is undefined.
+────╯
+Error: [4032]
+     ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:104:36 ]
+     │
+ 104 │ fn string_to_status(s : String) -> WorkflowStatus {
+     │                                    ───────┬──────  
+     │                                           ╰──────── The type WorkflowStatus is undefined.
+─────╯
+Error: [4032]
+     ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:115:22 ]
+     │
+ 115 │ fn err_to_string(e : WorkflowError) -> String {
+     │                      ──────┬──────  
+     │                            ╰──────── The type WorkflowError is undefined.
+─────╯
+Error: [4024]
+     ╭─[ /mnt/zhengshw8/moonbit/moonflow/src/state/snapshot.mbt:117:5 ]
+     │
+ 117 │     WorkflowError::StepFailed(n, r) => "StepFailed(\{n}, \{r})"
+     │     ──────┬──────  
+     │           ╰──────── The type/trait WorkflowError is not found.
+─────╯
+Error: [4024]
+     ╭─[ /mnt/zhengshw8/moonb
+
+[… truncated 4815 chars …]

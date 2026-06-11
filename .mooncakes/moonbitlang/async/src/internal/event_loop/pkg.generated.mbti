@@ -1,0 +1,133 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/async/internal/event_loop"
+
+import {
+  "moonbitlang/async/internal/fd_util",
+  "moonbitlang/async/internal/os_string",
+  "moonbitlang/core/ref",
+}
+
+// Values
+pub const IS_WINDOWS : Bool = false
+
+pub let _SIGBREAK : Int
+
+pub let _SIGHUP : Int
+
+pub let _SIGINT : Int
+
+pub let _SIGTERM : Int
+
+pub async fn access(StringView, Access, context~ : String) -> Int
+
+pub let check_fd_leak : @ref.Ref[Bool]
+
+pub async fn chmod(StringView, Int, context~ : String) -> Unit
+
+pub async fn file_kind_by_path(StringView, parent~ : Int, follow_symlink~ : Bool, context~ : String) -> @fd_util.FileKind
+
+pub async fn file_size(Int, context~ : String) -> Int64
+
+pub async fn file_time(Int, context~ : String) -> @fd_util.FileTime
+
+pub async fn file_time_by_path(StringView, follow_symlink~ : Bool, context~ : String) -> @fd_util.FileTime
+
+pub async fn getaddrinfo(StringView, context~ : String) -> Result[AddrInfo, String]
+
+pub async fn inotify_add_watch(Int, StringView, is_dir~ : Bool, context~ : String) -> Int
+
+pub async fn kind_of_fd(Int, context~ : String) -> @fd_util.FileKind
+
+pub async fn mkdir(StringView, mode~ : Int, context~ : String) -> Unit
+
+pub async fn open(StringView, Int, create~ : Int, append~ : Bool, sync~ : Int, mode~ : Int, context~ : String) -> (IoHandle, OpenResult)
+
+pub let platform : Platform
+
+pub async fn realpath(StringView, context~ : String) -> String
+
+pub fn register_hook(init? : () -> Unit raise, exit? : () -> Unit raise) -> Unit
+
+pub async fn remove(StringView, context~ : String) -> Unit
+
+pub async fn rename(StringView, StringView, replace~ : Bool, context~ : String) -> Unit
+
+pub async fn rmdir(StringView, context~ : String) -> Unit
+
+pub fn set_global_cancellation_signals(ReadOnlyArray[Int]) -> Unit
+
+pub async fn spawn(@os_string.OsString, FixedArray[@os_string.OsString?], env~ : FixedArray[@os_string.OsString?], stdin~ : Int, stdout~ : Int, stderr~ : Int, cwd~ : @os_string.OsString?, context~ : String) -> Process
+
+pub let stderr : IoHandle
+
+pub let stdin : IoHandle
+
+pub let stdout : IoHandle
+
+pub async fn symlink(StringView, StringView, context~ : String) -> Unit
+
+pub fn with_event_loop(async () -> Unit) -> Unit raise
+
+// Errors
+pub suberror KilledBySignal {
+  KilledBySignal(Int)
+}
+
+// Types and methods
+pub(all) enum Access {
+  Exist
+  CanRead
+  CanWrite
+  CanExecute
+}
+
+#external
+pub type AddrInfo
+
+type IoHandle
+pub async fn IoHandle::accept(Self, Bytes, context~ : String) -> Self
+pub async fn IoHandle::bind(Self, Bytes, context~ : String) -> Unit
+pub fn IoHandle::close(Self) -> Unit
+pub async fn IoHandle::connect(Self, Bytes, context~ : String) -> Unit
+pub fn IoHandle::detach_from_event_loop(Self) -> Unit
+pub fn IoHandle::fd(Self) -> Int
+pub fn IoHandle::from_fd(Int, kind~ : @fd_util.FileKind, is_async? : Bool) -> Self raise
+pub async fn IoHandle::fsync(Self, only_data~ : Bool, context~ : String) -> Unit
+pub fn IoHandle::kind(Self) -> @fd_util.FileKind
+pub async fn IoHandle::lock(Self, exclusive~ : Bool, context~ : String) -> Unit
+pub fn IoHandle::prepare_read(Self) -> Unit raise
+pub async fn IoHandle::read(Self, FixedArray[Byte], offset~ : Int, len~ : Int, context~ : String) -> Int
+pub async fn IoHandle::read_at(Self, FixedArray[Byte], offset~ : Int, len~ : Int, position~ : Int64, context~ : String) -> Int
+pub async fn IoHandle::readdir(Self, FixedArray[Byte], Int, restart~ : Bool, context~ : String) -> Int
+pub async fn IoHandle::recvfrom(Self, FixedArray[Byte], offset~ : Int, len~ : Int, addr~ : Bytes, context~ : String) -> Int
+pub async fn IoHandle::sendto(Self, Bytes, offset~ : Int, len~ : Int, addr~ : Bytes, context~ : String) -> Int
+pub async fn IoHandle::wait_read(Self) -> Unit
+pub async fn IoHandle::write(Self, Bytes, offset~ : Int, len~ : Int, context~ : String) -> Int
+pub async fn IoHandle::write_at(Self, Bytes, offset~ : Int, len~ : Int, position~ : Int64, context~ : String) -> Unit
+
+type OpenResult
+pub fn OpenResult::dev_id(Self) -> UInt64
+pub fn OpenResult::fd(Self) -> Int
+pub fn OpenResult::file_id(Self) -> UInt64
+pub fn OpenResult::kind(Self) -> @fd_util.FileKind
+
+pub(all) enum Platform {
+  Linux
+  MacOS
+  Windows
+}
+
+type Process
+pub fn Process::close(Self) -> Unit
+pub fn Process::from_pid(Int, context~ : String) -> Self
+pub fn Process::pid(Self) -> Int
+pub async fn Process::wait_pid(Self, context~ : String) -> Int
+
+type Timer
+pub fn Timer::cancel(Self) -> Unit
+pub fn Timer::new(Int, () -> Unit) -> Self
+
+// Type aliases
+
+// Traits
+

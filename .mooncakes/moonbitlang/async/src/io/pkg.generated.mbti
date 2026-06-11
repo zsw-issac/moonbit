@@ -1,0 +1,78 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/async/io"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn pipe() -> (PipeRead, PipeWrite)
+
+// Errors
+pub suberror PipeClosed derive(ToJson, @debug.Debug)
+#deprecated
+pub impl Show for PipeClosed
+
+pub(all) suberror ReaderClosed derive(ToJson, @debug.Debug)
+#deprecated
+pub impl Show for ReaderClosed
+
+// Types and methods
+type BufferedWriter[W]
+pub fn[W] BufferedWriter::capacity(Self[W]) -> Int
+pub async fn[W : Writer] BufferedWriter::flush(Self[W]) -> Unit
+pub fn[W] BufferedWriter::new(W, size? : Int) -> Self[W]
+pub impl[W : Writer] Writer for BufferedWriter[W]
+
+pub(all) enum Encoding {
+  UTF8
+}
+
+pub struct MemoryReader {
+  // private fields
+}
+pub fn MemoryReader::MemoryReader(async (&Writer) -> Unit) -> Self
+pub fn MemoryReader::close(Self) -> Unit
+pub impl Reader for MemoryReader
+
+type PipeRead
+pub fn PipeRead::close(Self) -> Unit
+pub impl Reader for PipeRead
+
+type PipeWrite
+pub fn PipeWrite::close(Self) -> Unit
+pub impl Writer for PipeWrite
+
+type ReaderBuffer
+pub fn ReaderBuffer::new() -> Self
+
+// Type aliases
+
+// Traits
+trait Data
+pub impl Data for String
+pub impl Data for Bytes
+pub impl Data for Json
+pub impl Data for BytesView
+pub impl Data for StringView
+pub fn &Data::binary(Self) -> Bytes
+pub fn &Data::json(Self) -> Json raise
+pub fn &Data::text(Self) -> String raise
+
+pub(open) trait Reader {
+  fn _get_internal_buffer(Self) -> ReaderBuffer
+  async fn _direct_read(Self, FixedArray[Byte], offset~ : Int, max_len~ : Int) -> Int
+  async fn read(Self, FixedArray[Byte], offset? : Int, max_len? : Int) -> Int = _
+  async fn drop(Self, Int) -> Int = _
+  async fn read_exactly(Self, Int) -> Bytes = _
+  async fn read_some(Self, max_len? : Int) -> Bytes? = _
+  async fn read_all(Self) -> &Data = _
+  async fn read_until(Self, StringView) -> String? = _
+}
+
+pub(open) trait Writer {
+  async fn write_once(Self, Bytes, offset~ : Int, len~ : Int) -> Int
+  async fn write(Self, &Data) -> Unit = _
+  async fn write_reader(Self, &Reader) -> Unit = _
+}
+

@@ -1,0 +1,7 @@
+import {
+  "moonbitlang/moonflow",
+}
+
+options(
+  "is-main": true,
+)

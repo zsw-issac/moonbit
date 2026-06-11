@@ -1,0 +1,9 @@
+import {
+  "moonbitlang/core/cmp",
+}
+
+import {
+  "moonbitlang/core/test",
+  "moonbitlang/async",
+  "moonbitlang/async/fs",
+} for "test"

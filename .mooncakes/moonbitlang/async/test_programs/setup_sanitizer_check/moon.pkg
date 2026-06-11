@@ -1,0 +1,11 @@
+import {
+  "moonbitlang/core/json",
+  "moonbitlang/async",
+  "moonbitlang/async/fs",
+}
+
+supported_targets = "-all+native"
+
+options(
+  "is-main": true,
+)

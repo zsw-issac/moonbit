@@ -1,0 +1,7 @@
+{
+  "name": "zhengshw8/moonbit",
+  "version": "0.1.0",
+  "deps": {
+    "moonbitlang/async": "0.19.3"
+  }
+}

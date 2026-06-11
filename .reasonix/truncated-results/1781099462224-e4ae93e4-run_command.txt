@@ -1,0 +1,739 @@
+$ /root/.moon/bin/moon -C moonflow test 2>&1
+[exit 1]
+Warning: [0053]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_engine.mbt:8:12 ]
+   │
+ 8 │ pub fn[S : Storage] Engine::new(storage : S) -> Engine[S] {
+   │            ───┬───  
+   │               ╰───── Warning (unused_trait_bound): This trait bound is unused.
+───╯
+Warning: [0020]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_engine.mbt:9:24 ]
+   │
+ 9 │   { storage, registry: Map::new() }
+   │                        ────┬───  
+   │                            ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+───╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_engine.mbt:28:23 ]
+    │
+ 28 │   let ts = @env.now().to_int64()
+    │                       ────┬───  
+    │                           ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_engine.mbt:76:29 ]
+    │
+ 76 │         let ts = @env.now().to_int64()
+    │                             ────┬───  
+    │                                 ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_engine.mbt:82:29 ]
+    │
+ 82 │         let ts = @env.now().to_int64()
+    │                             ────┬───  
+    │                                 ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_engine.mbt:89:23 ]
+    │
+ 89 │   let ts = @env.now().to_int64()
+    │                       ────┬───  
+    │                           ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+────╯
+Warning: [0020]
+     ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_engine.mbt:100:23 ]
+     │
+ 100 │   let ts = @env.now().to_int64()
+     │                       ────┬───  
+     │                           ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+─────╯
+Warning: [0020]
+     ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_engine.mbt:114:29 ]
+     │
+ 114 │         let ts = @env.now().to_int64()
+     │                             ────┬───  
+     │                                 ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+─────╯
+Warning: [0020]
+     ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_engine.mbt:118:29 ]
+     │
+ 118 │         let ts = @env.now().to_int64()
+     │                             ────┬───  
+     │                                 ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+─────╯
+Warning: [0027]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_scheduler.mbt:9:15 ]
+   │
+ 9 │ pub fn Async::pure[T](value : T) -> Async[T] {
+   │               ──┬─  
+   │                 ╰─── Warning (deprecated_syntax): The syntax fn f[..] for declaring polymorphic function is deprecated. Use fn[..] f instead.
+───╯
+Warning: [0027]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_scheduler.mbt:13:15 ]
+    │
+ 13 │ pub fn Async::map[T, U](self : Async[T], f : (T) -> U) -> Async[U] {
+    │               ─┬─  
+    │                ╰─── Warning (deprecated_syntax): The syntax fn f[..] for declaring polymorphic function is deprecated. Use fn[..] f instead.
+────╯
+Warning: [0027]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_scheduler.mbt:20:15 ]
+    │
+ 20 │ pub fn Async::bind[T, U](self : Async[T], f : (T) -> Async[U]) -> Async[U] {
+    │               ──┬─  
+    │                 ╰─── Warning (deprecated_syntax): The syntax fn f[..] for declaring polymorphic function is deprecated. Use fn[..] f instead.
+────╯
+Warning: [0027]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_scheduler.mbt:27:15 ]
+    │
+ 27 │ pub fn Async::run[T](self : Async[T]) -> T {
+    │               ─┬─  
+    │                ╰─── Warning (deprecated_syntax): The syntax fn f[..] for declaring polymorphic function is deprecated. Use fn[..] f instead.
+────╯
+Warning: [0006]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_step.mbt:4:3 ]
+   │
+ 4 │   Success(T)
+   │   ───┬───  
+   │      ╰───── Warning (unused_constructor): Variant 'Success' is never constructed
+───╯
+Warning: [0006]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_step.mbt:5:3 ]
+   │
+ 5 │   Failure(WorkflowError)
+   │   ───┬───  
+   │      ╰───── Warning (unused_constructor): Variant 'Failure' is never constructed
+───╯
+Warning: [0006]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_step.mbt:6:3 ]
+   │
+ 6 │   Pending
+   │   ───┬───  
+   │      ╰───── Warning (unused_constructor): Variant 'Pending' is never constructed
+───╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_workflow.mbt:25:23 ]
+    │
+ 25 │   let ts = @env.now().to_int64()
+    │                       ────┬───  
+    │                           ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/core_workflow.mbt:55:28 ]
+    │
+ 55 │   { name, steps: [], deps: Map::new() }
+    │                            ────┬───  
+    │                                ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/examples/etl_pipeline/main.mbt:58:35 ]
+    │
+ 58 │   println("ETL pipeline result: \{result}")
+    │                                   ───┬──  
+    │                                      ╰──── Warning (deprecated): Use Debug instead of Show for debugging purposes. See https://github.com/moonbitlang/core/blob/main/debug/README.mbt.md
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/examples/order_workflow/main.mbt:43:32 ]
+    │
+ 43 │   println("Workflow started: \{result}")
+    │                                ───┬──  
+    │                                   ╰──── Warning (deprecated): Use Debug instead of Show for debugging purposes. See https://github.com/moonbitlang/core/blob/main/debug/README.mbt.md
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/runtime_context.mbt:21:28 ]
+    │
+ 21 │     started_at: @env.now().to_int64(),
+    │                            ────┬───  
+    │                                ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+────╯
+Warning: [0020]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/runtime_memory_storage.mbt:9:17 ]
+   │
+ 9 │   { event_logs: Map::new(), snapshots: Map::new() }
+   │                 ────┬───  
+   │                     ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+───╯
+Warning: [0020]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/runtime_memory_storage.mbt:9:40 ]
+   │
+ 9 │   { event_logs: Map::new(), snapshots: Map::new() }
+   │                                        ────┬───  
+   │                                            ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+───╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/runtime_timer.mbt:18:26 ]
+    │
+ 18 │ pub fn DefaultTimer::now(self : DefaultTimer) -> Int64 {
+    │                          ──┬─  
+    │                            ╰─── Warning (unused_value): Unused variable 'self'
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/runtime_timer.mbt:19:14 ]
+    │
+ 19 │   @env.now().to_int64()
+    │              ────┬───  
+    │                  ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/runtime_timer.mbt:22:28 ]
+    │
+ 22 │ pub fn DefaultTimer::sleep(self : DefaultTimer, _ms : Int) -> Unit {
+    │                            ──┬─  
+    │                              ╰─── Warning (unused_value): Unused variable 'self'
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/state_replay.mbt:16:22 ]
+    │
+ 16 │     completed_steps: Map::new(),
+    │                      ────┬───  
+    │                          ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/state_replay.mbt:17:19 ]
+    │
+ 17 │     failed_steps: Map::new(),
+    │                   ────┬───  
+    │                       ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/state_replay.mbt:19:20 ]
+    │
+ 19 │     step_attempts: Map::new(),
+    │                    ────┬───  
+    │                        ╰───── Warning (deprecated): Use `Map([], capacity=...)` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/state_snapshot.mbt:12:16 ]
+    │
+ 12 │   Json::object(Map::of([
+    │                ───┬───  
+    │                   ╰───── Warning (deprecated): Use `Map([(k, v), ...])` or `Map::from_array` instead
+────╯
+Warning: [0021]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/state_snapshot.mbt:33:14 ]
+    │
+ 33 │         Some(Json::Number(n)) => n.to_int()
+    │              ───────┬───────  
+    │                     ╰───────── Warning (missing_pattern_arguments): The argument(s) repr of constructor Number are omitted (To ignore them, add ".." to the end of argument list).
+────╯
+Warning: [0021]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/state_snapshot.mbt:37:14 ]
+    │
+ 37 │         Some(Json::Number(n)) => n.to_int()
+    │              ───────┬───────  
+    │                     ╰───────── Warning (missing_pattern_arguments): The argument(s) repr of constructor Number are omitted (To ignore them, add ".." to the end of argument list).
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/state_snapshot.mbt:52:16 ]
+    │
+ 52 │   Json::object(Map::of([
+    │                ───┬───  
+    │                   ╰───── Warning (deprecated): Use `Map([(k, v), ...])` or `Map::from_array` instead
+────╯
+Warning: [0002]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/engine_test.mbt:8:31 ]
+   │
+ 8 │   engine.register("step1", fn(input : Json) -> @moonflow.Async[Result[Json, @moonflow.WorkflowError]] {
+   │                               ──┬──  
+   │                                 ╰──── Warning (unused_value): Unused variable 'input'
+───╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/engine_test.mbt:11:31 ]
+    │
+ 11 │   engine.register("step2", fn(input : Json) -> @moonflow.Async[Result[Json, @moonflow.WorkflowError]] {
+    │                               ──┬──  
+    │                                 ╰──── Warning (unused_value): Unused variable 'input'
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/engine_test.mbt:14:31 ]
+    │
+ 14 │   engine.register("step3", fn(input : Json) -> @moonflow.Async[Result[Json, @moonflow.WorkflowError]] {
+    │                               ──┬──  
+    │                                 ╰──── Warning (unused_value): Unused variable 'input'
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/engine_test.mbt:25:22 ]
+    │
+ 25 │   assert_true(result.is_ok())
+    │                      ──┬──  
+    │                        ╰──── Warning (deprecated): use `x is Ok(_)` instead
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/engine_test.mbt:36:33 ]
+    │
+ 36 │       @moonflow.Async::pure(Err(@moonflow.WorkflowError::StepFailed("flaky", "transient error")))
+    │                                 ─────────────────┬─────────────────  
+    │                                                  ╰─────────────────── Cannot create values of the read-only type: StepFailed.
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/engine_test.mbt:47:22 ]
+    │
+ 47 │   assert_true(result.is_ok())
+    │                      ──┬──  
+    │                        ╰──── Warning (deprecated): use `x is Ok(_)` instead
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/engine_test.mbt:55:31 ]
+    │
+ 55 │     @moonflow.Async::pure(Err(@moonflow.WorkflowError::StepFailed("always_fails", "always fails")))
+    │                               ─────────────────┬─────────────────  
+    │                                                ╰─────────────────── Cannot create values of the read-only type: StepFailed.
+────╯
+Error: [4080]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/engine_test.mbt:63:3 ]
+    │
+ 63 │   assert_true(result.is_ok(), "engine should not crash on step failure")
+    │   ───────────────────────────────────┬──────────────────────────────────  
+    │                                      ╰──────────────────────────────────── This function has type: 
+	#callsite(autofill(loc))
+	(Bool, msg? : StringView, loc~ : SourceLoc) -> Unit raise
+which requires 1 positional arguments, but is given 2 positional arguments.
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/engine_test.mbt:63:22 ]
+    │
+ 63 │   assert_true(result.is_ok(), "engine should not crash on step failure")
+    │                      ──┬──  
+    │                        ╰──── Warning (deprecated): use `x is Ok(_)` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/engine_test.mbt:90:22 ]
+    │
+ 90 │   assert_true(result.is_ok())
+    │                      ──┬──  
+    │                        ╰──── Warning (deprecated): use `x is Ok(_)` instead
+────╯
+Warning: [0029]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/moon.pkg:2:3 ]
+   │
+ 2 │   "moonbitlang/moonflow",
+   │   ───────────┬──────────  
+   │              ╰──────────── Warning (unused_package): Unused package 'moonbitlang/moonflow'
+───╯
+Error: [4080]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:6:3 ]
+   │
+ 6 │   assert_true(result.is_err(), "empty events should error")
+   │   ────────────────────────────┬────────────────────────────  
+   │                               ╰────────────────────────────── This function has type: 
+	#callsite(autofill(loc))
+	(Bool, msg? : StringView, loc~ : SourceLoc) -> Unit raise
+which requires 1 positional arguments, but is given 2 positional arguments.
+───╯
+Warning: [0020]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:6:22 ]
+   │
+ 6 │   assert_true(result.is_err(), "empty events should error")
+   │                      ───┬──  
+   │                         ╰──── Warning (deprecated): use `x is Err(_)` instead
+───╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:12:5 ]
+    │
+ 12 │     @moonflow.WorkflowEvent::WorkflowStarted(id, "test", Json::null(), Int64::from_int(1000)),
+    │     ────────────────────┬───────────────────  
+    │                         ╰───────────────────── Cannot create values of the read-only type: WorkflowStarted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:13:5 ]
+    │
+ 13 │     @moonflow.WorkflowEvent::StepStarted(id, "s1", 1, Int64::from_int(1001)),
+    │     ──────────────────┬─────────────────  
+    │                       ╰─────────────────── Cannot create values of the read-only type: StepStarted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:14:5 ]
+    │
+ 14 │     @moonflow.WorkflowEvent::StepCompleted(id, "s1", Json::object({ "ok": Json::boolean(true) }), Int64::from_int(1002)),
+    │     ───────────────────┬──────────────────  
+    │                        ╰──────────────────── Cannot create values of the read-only type: StepCompleted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:15:5 ]
+    │
+ 15 │     @moonflow.WorkflowEvent::StepStarted(id, "s2", 1, Int64::from_int(1003)),
+    │     ──────────────────┬─────────────────  
+    │                       ╰─────────────────── Cannot create values of the read-only type: StepStarted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:16:5 ]
+    │
+ 16 │     @moonflow.WorkflowEvent::StepCompleted(id, "s2", Json::object({ "ok": Json::boolean(true) }), Int64::from_int(1004)),
+    │     ───────────────────┬──────────────────  
+    │                        ╰──────────────────── Cannot create values of the read-only type: StepCompleted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:17:5 ]
+    │
+ 17 │     @moonflow.WorkflowEvent::WorkflowCompleted(id, Json::object({ "done": Json::boolean(true) }), Int64::from_int(1005)),
+    │     ─────────────────────┬────────────────────  
+    │                          ╰────────────────────── Cannot create values of the read-only type: WorkflowCompleted.
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:21:21 ]
+    │
+ 21 │   assert_true(state.is_ok())
+    │                     ──┬──  
+    │                       ╰──── Warning (deprecated): use `x is Ok(_)` instead
+────╯
+Error: [4018]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:24:3 ]
+    │
+ 24 │   assert_eq(s.status, @moonflow.Completed)
+    │   ────┬────  
+    │       ╰────── Type @moonbitlang/moonflow.WorkflowStatus does not implement trait Eq: no `impl` is defined
+────╯
+Error: [4018]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:24:3 ]
+    │
+ 24 │   assert_eq(s.status, @moonflow.Completed)
+    │   ────┬────  
+    │       ╰────── Type @moonbitlang/moonflow.WorkflowStatus does not implement trait Show: no `impl` is defined
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:24:23 ]
+    │
+ 24 │   assert_eq(s.status, @moonflow.Completed)
+    │                       ─────────┬─────────  
+    │                                ╰─────────── Cannot create values of the read-only type: Completed.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:30:5 ]
+    │
+ 30 │     @moonflow.WorkflowEvent::WorkflowStarted(id, "test", Json::null(), Int64::from_int(1000)),
+    │     ────────────────────┬───────────────────  
+    │                         ╰───────────────────── Cannot create values of the read-only type: WorkflowStarted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:31:5 ]
+    │
+ 31 │     @moonflow.WorkflowEvent::StepStarted(id, "s1", 1, Int64::from_int(1001)),
+    │     ──────────────────┬─────────────────  
+    │                       ╰─────────────────── Cannot create values of the read-only type: StepStarted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:32:5 ]
+    │
+ 32 │     @moonflow.WorkflowEvent::StepCompleted(id, "s1", Json::null(), Int64::from_int(1002)),
+    │     ───────────────────┬──────────────────  
+    │                        ╰──────────────────── Cannot create values of the read-only type: StepCompleted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:33:5 ]
+    │
+ 33 │     @moonflow.WorkflowEvent::StepStarted(id, "s2", 1, Int64::from_int(1003)),
+    │     ──────────────────┬─────────────────  
+    │                       ╰─────────────────── Cannot create values of the read-only type: StepStarted.
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:37:21 ]
+    │
+ 37 │   assert_true(state.is_ok())
+    │                     ──┬──  
+    │                       ╰──── Warning (deprecated): use `x is Ok(_)` instead
+────╯
+Error: [4018]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:41:3 ]
+    │
+ 41 │   assert_eq(s.status, @moonflow.Running)
+    │   ────┬────  
+    │       ╰────── Type @moonbitlang/moonflow.WorkflowStatus does not implement trait Eq: no `impl` is defined
+────╯
+Error: [4018]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:41:3 ]
+    │
+ 41 │   assert_eq(s.status, @moonflow.Running)
+    │   ────┬────  
+    │       ╰────── Type @moonbitlang/moonflow.WorkflowStatus does not implement trait Show: no `impl` is defined
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:41:23 ]
+    │
+ 41 │   assert_eq(s.status, @moonflow.Running)
+    │                       ────────┬────────  
+    │                               ╰────────── Cannot create values of the read-only type: Running.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:48:5 ]
+    │
+ 48 │     @moonflow.WorkflowEvent::WorkflowStarted(id, "test", Json::null(), Int64::from_int(1000)),
+    │     ────────────────────┬───────────────────  
+    │                         ╰───────────────────── Cannot create values of the read-only type: WorkflowStarted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:49:5 ]
+    │
+ 49 │     @moonflow.WorkflowEvent::StepStarted(id, "s1", 1, Int64::from_int(1001)),
+    │     ──────────────────┬─────────────────  
+    │                       ╰─────────────────── Cannot create values of the read-only type: StepStarted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:50:5 ]
+    │
+ 50 │     @moonflow.WorkflowEvent::StepCompleted(id, "s1", output1, Int64::from_int(1002)),
+    │     ───────────────────┬──────────────────  
+    │                        ╰──────────────────── Cannot create values of the read-only type: StepCompleted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:51:5 ]
+    │
+ 51 │     @moonflow.WorkflowEvent::WorkflowCompleted(id, Json::null(), Int64::from_int(1003)),
+    │     ─────────────────────┬────────────────────  
+    │                          ╰────────────────────── Cannot create values of the read-only type: WorkflowCompleted.
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:55:21 ]
+    │
+ 55 │   assert_true(state.is_ok())
+    │                     ──┬──  
+    │                       ╰──── Warning (deprecated): use `x is Ok(_)` instead
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:64:5 ]
+    │
+ 64 │     @moonflow.WorkflowEvent::WorkflowStarted(id, "test", Json::null(), Int64::from_int(1000)),
+    │     ────────────────────┬───────────────────  
+    │                         ╰───────────────────── Cannot create values of the read-only type: WorkflowStarted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:65:5 ]
+    │
+ 65 │     @moonflow.WorkflowEvent::StepStarted(id, "s1", 1, Int64::from_int(1001)),
+    │     ──────────────────┬─────────────────  
+    │                       ╰─────────────────── Cannot create values of the read-only type: StepStarted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:66:5 ]
+    │
+ 66 │     @moonflow.WorkflowEvent::StepCompleted(id, "s1", Json::null(), Int64::from_int(1002)),
+    │     ───────────────────┬──────────────────  
+    │                        ╰──────────────────── Cannot create values of the read-only type: StepCompleted.
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:67:5 ]
+    │
+ 67 │     @moonflow.WorkflowEvent::WorkflowCompleted(id, Json::null(), Int64::from_int(1003)),
+    │     ─────────────────────┬────────────────────  
+    │                          ╰────────────────────── Cannot create values of the read-only type: WorkflowCompleted.
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:72:22 ]
+    │
+ 72 │   assert_true(state1.is_ok())
+    │                      ──┬──  
+    │                        ╰──── Warning (deprecated): use `x is Ok(_)` instead
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:73:22 ]
+    │
+ 73 │   assert_true(state2.is_ok())
+    │                      ──┬──  
+    │                        ╰──── Warning (deprecated): use `x is Ok(_)` instead
+────╯
+Error: [4018]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:77:3 ]
+    │
+ 77 │   assert_eq(s1.status, s2.status)
+    │   ────┬────  
+    │       ╰────── Type @moonbitlang/moonflow.WorkflowStatus does not implement trait Eq: no `impl` is defined
+────╯
+Error: [4018]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/replay_test.mbt:77:3 ]
+    │
+ 77 │   assert_eq(s1.status, s2.status)
+    │   ────┬────  
+    │       ╰────── Type @moonbitlang/moonflow.WorkflowStatus does not implement trait Show: no `impl` is defined
+────╯
+Warning: [0002]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:6:7 ]
+   │
+ 6 │   let state = @moonflow.WorkflowExecutionState::new(id)
+   │       ──┬──  
+   │         ╰──── Warning (unused_value): Unused variable 'state'
+───╯
+Warning: [0002]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:7:7 ]
+   │
+ 7 │   let snapshot = @moonflow.WorkflowSnapshot {
+   │       ────┬───  
+   │           ╰───── Warning (unused_value): Unused variable 'snapshot'
+───╯
+Error: [4021]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:7:18 ]
+   │
+ 7 │   let snapshot = @moonflow.WorkflowSnapshot {
+   │                  ─────────────┬────────────  
+   │                               ╰────────────── Value WorkflowSnapshot not found in package `moonflow`.
+───╯
+Error: [3002]
+   ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:7:45 ]
+   │
+ 7 │   let snapshot = @moonflow.WorkflowSnapshot {
+   │                                             ┬  
+   │                                             ╰── Parse error, unexpected token `{`, you may expect `;` or `}`.
+───╯
+Error: [4074]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:14:7 ]
+    │
+ 14 │   let json = snapshot.to_json()
+    │       ──┬─  
+    │         ╰─── Cannot infer the type of variable json, please add more type annotation.
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:14:7 ]
+    │
+ 14 │   let json = snapshot.to_json()
+    │       ──┬─  
+    │         ╰─── Warning (unused_value): Unused toplevel variable 'json'. Note if the body contains side effect, it will not happen. Use `fn init { .. }` to wrap the effect.
+────╯
+Error: [4021]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:14:14 ]
+    │
+ 14 │   let json = snapshot.to_json()
+    │              ────┬───  
+    │                  ╰───── The value identifier snapshot is unbound.
+────╯
+Error: [4074]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:15:7 ]
+    │
+ 15 │   let restored = @moonflow.WorkflowSnapshot::from_json(json)
+    │       ────┬───  
+    │           ╰───── Cannot infer the type of variable restored, please add more type annotation.
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:15:7 ]
+    │
+ 15 │   let restored = @moonflow.WorkflowSnapshot::from_json(json)
+    │       ────┬───  
+    │           ╰───── Warning (unused_value): Unused toplevel variable 'restored'. Note if the body contains side effect, it will not happen. Use `fn init { .. }` to wrap the effect.
+────╯
+Error: [3002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:16:3 ]
+    │
+ 16 │   assert_true(restored.is_ok())
+    │   ─────┬─────  
+    │        ╰─────── Parse error, unexpected token id (lowercase start), you may expect `pub`, `priv`, `type`, `suberror`, `extenum`, `typealias`, `async`, `fn`, `fnalias`, `struct`, `enum`, `let`, `const`, `extern`, `test`, `impl`, `trait`, `traitalias`, `enumview`, `#attribute` or `using`.
+────╯
+Error: [4074]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:18:7 ]
+    │
+ 18 │   let snap2 = restored.unwrap()
+    │       ──┬──  
+    │         ╰──── Cannot infer the type of variable snap2, please add more type annotation.
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:18:7 ]
+    │
+ 18 │   let snap2 = restored.unwrap()
+    │       ──┬──  
+    │         ╰──── Warning (unused_value): Unused toplevel variable 'snap2'. Note if the body contains side effect, it will not happen. Use `fn init { .. }` to wrap the effect.
+────╯
+Error: [3002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:19:3 ]
+    │
+ 19 │   assert_eq(snap2.event_count, 5)
+    │   ────┬────  
+    │       ╰────── Parse error, unexpected token id (lowercase start), you may expect `pub`, `priv`, `type`, `suberror`, `extenum`, `typealias`, `async`, `fn`, `fnalias`, `struct`, `enum`, `let`, `const`, `extern`, `test`, `impl`, `trait`, `traitalias`, `enumview`, `#attribute` or `using`.
+────╯
+Error: [4094]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:26:3 ]
+    │
+ 26 │   state.status = @moonflow.Completed
+    │   ─────────────────┬────────────────  
+    │                    ╰────────────────── Cannot modify a read-only field: status
+────╯
+Error: [4036]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:26:18 ]
+    │
+ 26 │   state.status = @moonflow.Completed
+    │                  ─────────┬─────────  
+    │                           ╰─────────── Cannot create values of the read-only type: Completed.
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:28:7 ]
+    │
+ 28 │   let ts = @env.now().to_int64()
+    │       ─┬  
+    │        ╰── Warning (unused_value): Unused variable 'ts'
+────╯
+Warning: [0020]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:28:23 ]
+    │
+ 28 │   let ts = @env.now().to_int64()
+    │                       ────┬───  
+    │                           ╰───── Warning (deprecated): Use `reinterpret_as_int64` instead
+────╯
+Warning: [0002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:29:7 ]
+    │
+ 29 │   let snapshot = @moonflow.WorkflowSnapshot {
+    │       ────┬───  
+    │           ╰───── Warning (unused_value): Unused variable 'snapshot'
+────╯
+Error: [4021]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:29:18 ]
+    │
+ 29 │   let snapshot = @moonflow.WorkflowSnapshot {
+    │                  ─────────────┬────────────  
+    │                               ╰────────────── Value WorkflowSnapshot not found in package `moonflow`.
+────╯
+Error: [3002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:29:45 ]
+    │
+ 29 │   let snapshot = @moonflow.WorkflowSnapshot {
+    │                                             ┬  
+    │                                             ╰── Parse error, unexpected token `{`, you may expect `;` or `}`.
+────╯
+Error: [4074]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:36:7 ]
+    │
+ 36 │   let json = snapshot.to_json()
+    │       ──┬─  
+    │         ╰─── Cannot infer the type of variable json, please add more type annotation.
+────╯
+Error: [4051]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:36:7 ]
+    │
+ 36 │   let json = snapshot.to_json()
+    │       ──┬─  
+    │         ╰─── The toplevel identifier json is declared twice: it was previously defined at /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:14:7.
+────╯
+Error: [4021]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:36:14 ]
+    │
+ 36 │   let json = snapshot.to_json()
+    │              ────┬───  
+    │                  ╰───── The value identifier snapshot is unbound.
+────╯
+Error: [4074]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:37:7 ]
+    │
+ 37 │   let restored = @moonflow.WorkflowSnapshot::from_json(json)
+    │       ────┬───  
+    │           ╰───── Cannot infer the type of variable restored, please add more type annotation.
+────╯
+Error: [4051]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:37:7 ]
+    │
+ 37 │   let restored = @moonflow.WorkflowSnapshot::from_json(json)
+    │       ────┬───  
+    │           ╰───── The toplevel identifier restored is declared twice: it was previously defined at /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:15:7.
+────╯
+Error: [3002]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:38:3 ]
+    │
+ 38 │   assert_true(restored.is_ok())
+    │   ─────┬─────  
+    │        ╰─────── Parse error, unexpected token id (lowercase start), you may expect `pub`, `priv`, `type`, `suberror`, `extenum`, `typealias`, `async`, `fn`, `fnalias`, `struct`, `enum`, `let`, `const`, `extern`, `test`, `impl`, `trait`, `traitalias`, `enumview`, `#attribute` or `using`.
+────╯
+Error: [4080]
+    ╭─[ /mnt/zhengshw8/moonbit/moonflow/test/snapshot_test.mbt:44:3 ]
+    │
+ 44 │   assert_true(result.is_err(), "invalid json should error")
+    │   ────────────────────────────┬────────────────────────────  
+    │                               ╰────────────────────────────── This function has type: 
+	#callsite(autofill(loc))
+	(Bool, msg? : StringView, loc~ : SourceLo
+
+[… truncated 1440 chars …]
