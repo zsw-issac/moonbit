@@ -142,8 +142,8 @@ WorkflowStarted ──► StepStarted ──► StepCompleted ──► ... ─�
 | API & 工具 | 5 | ~300 |
 | 中间件 & 策略 | 3 | ~230 |
 | 示例 (examples) | 2 | ~190 |
-| 测试 (42 个用例) | 4 | ~700 |
-| **总计** | **31** | **~2,550** |
+| 测试 (60 个用例) | 7 | ~1,100 |
+| **总计** | **35** | **~3,300** |
 
 ### 4.2 功能清单
 
@@ -158,6 +158,11 @@ WorkflowStarted ──► StepStarted ──► StepCompleted ──► ... ─�
 - ✅ 存储抽象 — `Storage` trait (返回 `Async[Result[...]]`)
 - ✅ MemoryStorage / FileStorage
 - ✅ `moonbitlang/async` 集成
+- ✅ Saga 分布式事务编排 (自动补偿回滚)
+- ✅ 子工作流嵌套 (SubWorkflow StepType)
+- ✅ 事件日志查询 (按类型/步骤/时间过滤，统计分析)
+- ✅ FileStorage JSON 持久化 + flush()
+- ✅ 性能基准 (500步吞吐量/1000事件重放)
 - ✅ 快照序列化 — `WorkflowSnapshot::to_json/from_json`
 - ✅ 工作流验证 — `validate_workflow()`
 - ✅ 查询 API — `query_status()`, `query_summary()`, `list_all_workflows()`
@@ -166,7 +171,7 @@ WorkflowStarted ──► StepStarted ──► StepCompleted ──► ... ─�
 - ✅ 中间件系统 — logging / retry / circuit-breaker
 - ✅ 重试策略 — Fixed / ExponentialBackoff / NoRetry
 - ✅ 指标监控 — `WorkflowMetrics` (支持 JSON 导出)
-- ✅ 42 个测试用例 (T01-T42)
+- ✅ 60 个测试用例 (T01-T60)，含 Saga/子工作流/事件查询/基准测试
 
 ### 4.3 测试覆盖
 
