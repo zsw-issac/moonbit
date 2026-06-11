@@ -100,9 +100,11 @@ fn[S : Storage] Engine::execute_workflow(
         }
       }
       SubWorkflow(sub_name) => {
-        self.store_event(wf_id, WorkflowEvent::StepCompleted(wf_id, node.name, current_input, @env.now().to_int64()))
-        step_index = step_index + 1
-        ignore(sub_name)
+        let sub_result = self.execute_sub_workflow(wf_id, node, current_input)
+        match sub_result {
+          Ok(output) => { self.store_event(wf_id, WorkflowEvent::StepCompleted(wf_id, node.name, output, @env.now().to_int64())); current_input = output; step_index = step_index + 1 }
+          Err(err) => { self.store_event(wf_id, WorkflowEvent::WorkflowFailed(wf_id, err_to_string(err), @env.now().to_int64())); return }
+        }
       }
     }
   }
@@ -198,6 +200,30 @@ fn[S : Storage] Engine::load_all_events(self : Engine[S], id : WorkflowId) -> Ar
   match self.storage.load_events(id).run() {
     Ok(events) => events
     Err(_) => []
+  }
+}
+
+/// Execute a sub-workflow: looks up the stored WorkflowDef by the sub-workflow name,
+/// starts it as a child workflow within the same engine, and waits for completion.
+fn[S : Storage] Engine::execute_sub_workflow(
+  self : Engine[S],
+  parent_wf_id : WorkflowId,
+  node : StepNode,
+  input : Json
+) -> Result[Json, WorkflowError] {
+  let sub_def = match self.workflow_defs.get(node.name) {
+    Some(d) => d
+    None => return Err(WorkflowError::StepFailed(node.name, "sub-workflow definition not found"))
+  }
+  let sub_result = self.start(sub_def, input).run()
+  match sub_result {
+    Ok(sub_id) => {
+      // Load the sub-workflow's events to get final output
+      let sub_events = self.load_all_events(sub_id)
+      let output = get_last_output(sub_events)
+      Ok(output)
+    }
+    Err(err) => Err(err)
   }
 }
 

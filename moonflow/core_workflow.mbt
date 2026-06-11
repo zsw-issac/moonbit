@@ -101,6 +101,17 @@ pub fn WorkflowBuilder::branch(
   self
 }
 
+/// Add a sub-workflow step. The sub-workflow definition must be stored
+/// in the engine before execution using `engine.workflow_defs[name] = def`.
+pub fn WorkflowBuilder::sub_workflow(
+  self : WorkflowBuilder,
+  name : String,
+  sub_wf_name : String
+) -> WorkflowBuilder {
+  self.steps.push({ name, config: StepConfig::default(name), step_type: SubWorkflow(sub_wf_name) })
+  self
+}
+
 pub fn WorkflowBuilder::build(self : WorkflowBuilder) -> WorkflowDef {
   { name: self.name, steps: self.steps, deps: self.deps }
 }

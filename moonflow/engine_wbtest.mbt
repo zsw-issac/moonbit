@@ -343,3 +343,54 @@ test "T30: validation valid workflow" {
   let result = validate_workflow(engine, wf)
   assert_true(result.valid)
 }
+
+/// T49: Sub-workflow execution — parent calls child workflow.
+test "T49: sub workflow execution" {
+  let storage = MemoryStorage::new()
+  let engine = Engine::new(storage)
+
+  engine.register("child_step", fn(input : Json) -> Async[Result[Json, WorkflowError]] {
+    Async::pure(Ok(Json::object({ "child_result": Json::string("done") })))
+  })
+
+  // Define child workflow
+  let child_wf = workflow("child")
+    .then("child_step", StepConfig::default("child_step"))
+    .build()
+
+  // Store child definition in engine
+  engine.workflow_defs["sub1"] = child_wf
+
+  // Define parent workflow with sub-workflow step
+  let parent_wf = workflow("parent")
+    .sub_workflow("sub1", "child")
+    .build()
+
+  let result = Async::run(engine.start(parent_wf, Json::null()))
+  assert_true(result is Ok(_))
+}
+
+/// T50: Sub-workflow with parallel parent — child inside parallel group.
+test "T50: sub workflow in parallel" {
+  let storage = MemoryStorage::new()
+  let engine = Engine::new(storage)
+
+  engine.register("direct_step", fn(_input : Json) -> Async[Result[Json, WorkflowError]] {
+    Async::pure(Ok(Json::object({ "direct": Json::boolean(true) })))
+  })
+  engine.register("child_step", fn(_input : Json) -> Async[Result[Json, WorkflowError]] {
+    Async::pure(Ok(Json::object({ "child_out": Json::boolean(true) })))
+  })
+
+  let child_wf = workflow("child2")
+    .then("child_step", StepConfig::default("child_step"))
+    .build()
+  engine.workflow_defs["sub2"] = child_wf
+
+  let parent_wf = workflow("parent2")
+    .parallel("group", ["direct_step", "sub2"])
+    .build()
+
+  let result = Async::run(engine.start(parent_wf, Json::null()))
+  assert_true(result is Ok(_))
+}
