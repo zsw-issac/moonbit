@@ -14,7 +14,7 @@ fn load_ev[S : Storage](storage : S, id : WorkflowId) -> Array[WorkflowEvent] {
 pub fn[S : Storage] filter_by_type(
   storage : S, id : WorkflowId, types : Array[String]
 ) -> Array[WorkflowEvent] {
-  let events = load_events_sync(storage, id)
+  let events = load_ev(storage, id)
   let result : Array[WorkflowEvent] = Array::new()
   for e in events {
     let type_name = event_type_name(e)
@@ -29,7 +29,7 @@ pub fn[S : Storage] filter_by_type(
 pub fn[S : Storage] filter_by_step(
   storage : S, id : WorkflowId, step_name : String
 ) -> Array[WorkflowEvent] {
-  let events = load_events_sync(storage, id)
+  let events = load_ev(storage, id)
   let result : Array[WorkflowEvent] = Array::new()
   for e in events {
     let e_step = event_step_name(e)
@@ -45,7 +45,7 @@ pub fn[S : Storage] filter_by_step(
 pub fn[S : Storage] filter_by_time(
   storage : S, id : WorkflowId, start_ms : Int64, end_ms : Int64
 ) -> Array[WorkflowEvent] {
-  let events = load_events_sync(storage, id)
+  let events = load_ev(storage, id)
   let result : Array[WorkflowEvent] = Array::new()
   for e in events {
     let ts = event_timestamp(e)
@@ -60,19 +60,19 @@ pub fn[S : Storage] filter_by_time(
 /// EventStats: aggregated counts by category.
 pub struct EventStats {
   total_events : Int
-  started_count : Int
-  completed_count : Int
-  failed_count : Int
-  retrying_count : Int
-  workflow_started : Int
-  workflow_completed : Int
-  workflow_failed : Int
+  mut started_count : Int
+  mut completed_count : Int
+  mut failed_count : Int
+  mut retrying_count : Int
+  mut workflow_started : Int
+  mut workflow_completed : Int
+  mut workflow_failed : Int
 }
 
 /// Compute event statistics for a workflow.
 pub fn[S : Storage] compute_stats(storage : S, id : WorkflowId) -> EventStats {
-  let events = load_events_sync(storage, id)
-  let mut stats = EventStats {
+  let events = load_ev(storage, id)
+  let stats = EventStats::{
     total_events: events.length(),
     started_count: 0, completed_count: 0, failed_count: 0, retrying_count: 0,
     workflow_started: 0, workflow_completed: 0, workflow_failed: 0,
