@@ -3,7 +3,7 @@
 > 基于 MoonBit 的确定性工作流引擎 — 崩溃可恢复、执行可重放、步骤可重试
 
 [![MoonBit](https://img.shields.io/badge/MoonBit-v0.10-blue)](https://www.moonbitlang.com/)
-[![Tests](https://img.shields.io/badge/tests-42%2F42-green)](./)
+[![Tests](https://img.shields.io/badge/tests-60%2F60-green)](./)
 [![License](https://img.shields.io/badge/license-Apache%202.0-orange)](./LICENSE)
 
 ---
@@ -65,7 +65,8 @@ let result = @moonflow.Async::run(engine.start(wf, Json::null()))
 │  🏗️ 工作流 DSL                                             │
 │  ├─ .then(step, config)        顺序步骤                    │
 │  ├─ .parallel(group, [...])    并行步骤组                  │
-│  └─ .branch(name, cond, T, F)  条件分支                    │
+│  ├─ .branch(name, cond, T, F)  条件分支                    │
+│  └─ .sub_workflow(name, def)   子工作流嵌套                │
 ├────────────────────────────────────────────────────────────┤
 │  ⚙️ 执行引擎                                               │
 │  ├─ Engine::start()            启动工作流                  │
@@ -84,8 +85,21 @@ let result = @moonflow.Async::run(engine.start(wf, Json::null()))
 │  ├─ 查询 API                   query_status/summary        │
 │  ├─ 结果 API                   get_result/error            │
 │  ├─ 补偿回滚                   补偿计划 + 执行             │
+│  ├─ 补偿回滚                   补偿计划 + 执行             │
 │  ├─ 中间件                     logging/retry/circuit-breaker│
-│  └─ 指标监控                   42 项指标 + JSON 导出       │
+│  ├─ 指标监控                   60 项指标 + JSON 导出       │
+│  ├─ 事件查询                   filter/step/time/stats     │
+│  └─ 基准测试                   吞吐量/重放/内存           │
+├────────────────────────────────────────────────────────────┤
+│  🔗 分布式事务 (Saga)                                      │
+│  ├─ Saga::step(forward, compensate)  正向+补偿配对         │
+│  ├─ 自动补偿回滚                    反向执行补偿           │
+│  └─ step_by_name()                  复用已注册处理器       │
+├────────────────────────────────────────────────────────────┤
+│  🪆 子工作流                                              │
+│  ├─ SubWorkflow StepType             嵌套工作流            │
+│  ├─ 子工作流定义存储                  engine.workflow_defs  │
+│  └─ 输出合并到父工作流                透明传递              │
 └────────────────────────────────────────────────────────────┘
 ```
 
@@ -134,11 +148,46 @@ let wf = @moonflow.workflow("etl-pipeline")
   .build()
 ```
 
+## 示例：Saga 分布式事务
+
+```moonbit
+// 转账 Saga: debit_A → credit_B
+// 失败时自动补偿: reverse_debit_A ← reverse_credit_B
+let saga = @moonflow.Saga::new(engine, storage, "transfer")
+  .step("debit_A",
+    fn(input) { /* 从A扣款 */ @moonflow.Async::pure(Ok(input)) },
+    fn(input) { /* 补偿: 退回A */ @moonflow.Async::pure(Ok(input)) })
+  .step("credit_B",
+    fn(input) { /* 向B入账 */ @moonflow.Async::pure(Ok(input)) },
+    fn(input) { /* 补偿: 扣回B */ @moonflow.Async::pure(Ok(input)) })
+
+let result = @moonflow.Async::run(saga.execute(input))
+// 成功: 两个正向步骤都执行
+// credit_B失败: 自动执行 compensate(debit_A)，完整回滚
+```
+
+## 示例：子工作流嵌套
+
+```moonbit
+// 子工作流
+let child_wf = @moonflow.workflow("child")
+  .then("child_step", @moonflow.StepConfig::default("child_step"))
+  .build()
+engine.workflow_defs["sub1"] = child_wf  // 存储定义
+
+// 父工作流中包含子工作流
+let parent_wf = @moonflow.workflow("parent")
+  .then("pre_check", ...)
+  .sub_workflow("sub1", "child")         // 👈 嵌套子工作流
+  .then("post_process", ...)
+  .build()
+```
+
 ## MoonBit 特性运用
 
 | 特性 | 运用 |
 |------|------|
-| **ADT 枚举** | `WorkflowEvent` (7 事件)、`WorkflowError` (7 错误)、`StepType` (3 类型) |
+| **ADT 枚举** | `WorkflowEvent` (7 事件)、`WorkflowError` (7 错误)、`StepType` (4 类型含 SubWorkflow) |
 | **Trait 系统** | `Storage`、`TimerProvider` — 可热替换后端 |
 | **泛型 + 约束** | `Engine[S : Storage]` — 编译期类型安全 |
 | **Result 类型** | 零 panic，全部可恢复错误 |
@@ -149,7 +198,7 @@ let wf = @moonflow.workflow("etl-pipeline")
 
 ```
 ✅ moon build    — 0 errors
-✅ moon test     — 42/42 passed
+✅ moon test     — 60/60 passed
 ✅ moon run examples/order_workflow
 ✅ moon run examples/etl_pipeline
 📦 moonbitlang/async@0.19.3
@@ -171,7 +220,7 @@ moon run examples/etl_pipeline      # ETL 数据管道
 ## 运行测试
 
 ```bash
-moon test    # 42 tests, 0 failures
+moon test    # 60 tests, 0 failures
 ```
 
 ## 文档
