@@ -98,6 +98,23 @@ test "T78: circuit breaker opens" {
 
 /// T79: Bulkhead capacity and active count.
 /// T80: Concurrent signal — multiple signals in sequence.
+/// T81: Batch empty list succeeds.
+test "T81: batch empty list" {
+  let storage = MemoryStorage::new()
+  let engine = Engine::new(storage)
+  let result = engine.execute_batch(WorkflowId::new("empty"), [], Json::null(), true)
+  assert_true(result is Ok(_))
+}
+
+/// T82: Batch with unregistered handler fails.
+test "T82: batch missing handler" {
+  let storage = MemoryStorage::new()
+  let engine = Engine::new(storage)
+  let result = engine.execute_batch(WorkflowId::new("missing"), ["nobody"], Json::null(), true)
+  assert_true(result is Err(_))
+}
+
+/// T80: Concurrent signal — multiple signals in sequence.
 test "T80: concurrent signals" {
   let storage = MemoryStorage::new()
   let engine = Engine::new(storage)
