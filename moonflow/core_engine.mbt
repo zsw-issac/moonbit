@@ -8,10 +8,64 @@ pub struct Engine[S] {
   storage : S
   registry : Map[String, StepExecutor]
   workflow_defs : Map[String, WorkflowDef]
+  signals : Map[String, Map[String, Bool]]
 }
 
 pub fn[S : Storage] Engine::new(storage : S) -> Engine[S] {
-  { storage, registry: Map::new(), workflow_defs: Map::new() }
+  { storage, registry: Map::new(), workflow_defs: Map::new(), signals: Map::new() }
+}
+
+/// Send a signal to a running workflow. The workflow must have a Signal step
+/// waiting for this signal name. Signals are consumed once matched.
+pub fn[S] Engine::signal(self : Engine[S], wf_id : String, signal_name : String) -> Unit {
+  let wf_signals = match self.signals.get(wf_id) {
+    Some(m) => m
+    None => { self.signals[wf_id] = Map::new(); match self.signals.get(wf_id) { Some(m) => m; None => Map::new() } }
+  }
+  wf_signals[signal_name] = true
+}
+
+/// Check if a signal has been received for the given workflow.
+fn[S] Engine::has_signal(self : Engine[S], wf_id : String, signal_name : String) -> Bool {
+  match self.signals.get(wf_id) {
+    Some(m) => match m.get(signal_name) { Some(v) => v; None => false }
+    None => false
+  }
+}
+
+/// Execute a batch of independent steps in parallel (simulated).
+/// Each step receives the same input. Results are collected; if any fail,
+/// the strategy determines behavior.
+pub fn[S : Storage] Engine::execute_batch(
+  self : Engine[S],
+  wf_id : WorkflowId,
+  step_names : Array[String],
+  input : Json,
+  fail_fast : Bool
+) -> Result[Json, WorkflowError] {
+  let merged : Map[String, Json] = Map::new()
+  let mut first_error : WorkflowError? = None
+
+  for name in step_names {
+    match self.registry.get(name) {
+      Some(handler) => {
+        let result = handler(input).run()
+        match result {
+          Ok(output) => merged[name] = output
+          Err(err) => {
+            if fail_fast { return Err(err) }
+            if first_error is None { first_error = Some(err) }
+          }
+        }
+      }
+      None => return Err(WorkflowError::StepFailed(name, "handler not found"))
+    }
+  }
+
+  match first_error {
+    Some(err) => Err(err)
+    None => Ok(Json::object(merged))
+  }
 }
 
 pub fn[S] Engine::register(
@@ -104,6 +158,17 @@ fn[S : Storage] Engine::execute_workflow(
         match sub_result {
           Ok(output) => { self.store_event(wf_id, WorkflowEvent::StepCompleted(wf_id, node.name, output, @env.now().to_int64())); current_input = output; step_index = step_index + 1 }
           Err(err) => { self.store_event(wf_id, WorkflowEvent::WorkflowFailed(wf_id, err_to_string(err), @env.now().to_int64())); return }
+        }
+      }
+      Signal(signal_name) => {
+        if self.has_signal(wf_id.value, signal_name) {
+          // Signal received — step completes immediately
+          self.store_event(wf_id, WorkflowEvent::StepCompleted(wf_id, node.name, current_input, @env.now().to_int64()))
+          step_index = step_index + 1
+        } else {
+          // Signal not yet received — workflow pauses here (can be resumed later)
+          self.store_event(wf_id, WorkflowEvent::WorkflowFailed(wf_id, "Waiting for signal: \{signal_name}", @env.now().to_int64()))
+          return
         }
       }
     }

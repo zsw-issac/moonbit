@@ -46,6 +46,7 @@ pub enum StepType {
   Parallel(Array[String])
   Conditional(String, String, String)
   SubWorkflow(String)
+  Signal(String)
 }
 
 ///|

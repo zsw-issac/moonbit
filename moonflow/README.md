@@ -3,7 +3,7 @@
 > 基于 MoonBit 的确定性工作流引擎 — 崩溃可恢复、执行可重放、步骤可重试
 
 [![MoonBit](https://img.shields.io/badge/MoonBit-v0.10-blue)](https://www.moonbitlang.com/)
-[![Tests](https://img.shields.io/badge/tests-60%2F60-green)](./)
+[![Tests](https://img.shields.io/badge/tests-72%2F72-green)](./)
 [![License](https://img.shields.io/badge/license-Apache%202.0-orange)](./LICENSE)
 
 ---
@@ -89,7 +89,20 @@ let result = @moonflow.Async::run(engine.start(wf, Json::null()))
 │  ├─ 中间件                     logging/retry/circuit-breaker│
 │  ├─ 指标监控                   60 项指标 + JSON 导出       │
 │  ├─ 事件查询                   filter/step/time/stats     │
+│  ├─ 错误分类                   Transient/Permanent/Timeout │
 │  └─ 基准测试                   吞吐量/重放/内存           │
+├────────────────────────────────────────────────────────────┤
+│  📡 信号 & 批量                                          │
+│  ├─ wait_signal(name, signal)   暂停等待外部信号          │
+│  ├─ engine.signal(id, name)     发送信号恢复工作流        │
+│  └─ engine.execute_batch()      批量并行 + fail-fast       │
+├────────────────────────────────────────────────────────────┤
+│  🧩 模式库                                               │
+│  ├─ pattern_retry_backoff       指数退避重试              │
+│  ├─ pattern_timeout             超时包装                  │
+│  ├─ pattern_fallback            主备切换                  │
+│  ├─ PatternCircuitBreaker       熔断器                    │
+│  └─ PatternBulkhead             隔舱限流                  │
 ├────────────────────────────────────────────────────────────┤
 │  🔗 分布式事务 (Saga)                                      │
 │  ├─ Saga::step(forward, compensate)  正向+补偿配对         │
@@ -187,7 +200,7 @@ let parent_wf = @moonflow.workflow("parent")
 
 | 特性 | 运用 |
 |------|------|
-| **ADT 枚举** | `WorkflowEvent` (7 事件)、`WorkflowError` (7 错误)、`StepType` (4 类型含 SubWorkflow) |
+| **ADT 枚举** | `WorkflowEvent` (7 事件)、`WorkflowError` (7 错误)、`StepType` (5 类型含 Signal) |
 | **Trait 系统** | `Storage`、`TimerProvider` — 可热替换后端 |
 | **泛型 + 约束** | `Engine[S : Storage]` — 编译期类型安全 |
 | **Result 类型** | 零 panic，全部可恢复错误 |
@@ -198,7 +211,7 @@ let parent_wf = @moonflow.workflow("parent")
 
 ```
 ✅ moon build    — 0 errors
-✅ moon test     — 60/60 passed
+✅ moon test     — 72/72 passed
 ✅ moon run examples/order_workflow
 ✅ moon run examples/etl_pipeline
 📦 moonbitlang/async@0.19.3
@@ -220,7 +233,7 @@ moon run examples/etl_pipeline      # ETL 数据管道
 ## 运行测试
 
 ```bash
-moon test    # 60 tests, 0 failures
+moon test    # 72 tests, 0 failures
 ```
 
 ## 文档

@@ -27,7 +27,7 @@ pub fn[S] validate_workflow(engine : Engine[S], wf_def : WorkflowDef) -> Validat
     // Check handler registration
     let has_handler = engine.registry.contains(node.name)
     match node.step_type {
-      Parallel(_) | Conditional(_, _, _) | SubWorkflow(_) => ignore(node)
+      Parallel(_) | Conditional(_, _, _) | SubWorkflow(_) | Signal(_) => ignore(node)
       Sequential => {
         if !has_handler {
           warnings.push("Step '\{node.name}' has no registered handler")
@@ -54,7 +54,7 @@ pub fn[S] validate_workflow(engine : Engine[S], wf_def : WorkflowDef) -> Validat
           warnings.push("Branch target '\{on_false}' has no registered handler")
         }
       }
-      Sequential | SubWorkflow(_) => ignore(node)
+      Sequential | SubWorkflow(_) | Signal(_) => ignore(node)
     }
 
     if node.config.max_retry < 0 {

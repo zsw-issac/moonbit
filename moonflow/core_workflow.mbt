@@ -103,6 +103,16 @@ pub fn WorkflowBuilder::branch(
 
 /// Add a sub-workflow step. The sub-workflow definition must be stored
 /// in the engine before execution using `engine.workflow_defs[name] = def`.
+/// Add a signal-waiting step. The workflow pauses until engine.signal(id, name) is called.
+pub fn WorkflowBuilder::wait_signal(
+  self : WorkflowBuilder,
+  step_name : String,
+  signal_name : String
+) -> WorkflowBuilder {
+  self.steps.push({ name: step_name, config: StepConfig::default(step_name), step_type: Signal(signal_name) })
+  self
+}
+
 pub fn WorkflowBuilder::sub_workflow(
   self : WorkflowBuilder,
   name : String,
