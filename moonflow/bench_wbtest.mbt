@@ -85,6 +85,29 @@ test "T59: metrics stress" {
 /// T75: retry_delay_ms simulated sleep.
 /// T76: FileStorage flush and load from disk.
 /// T77: Engine tracks metrics.
+/// T78: Circuit breaker opens after threshold failures.
+test "T78: circuit breaker opens" {
+  let cb = PatternCircuitBreaker::new(2, 1000)
+  let fail_handler : StepExecutor = fn(_i : Json) -> Async[Result[Json, WorkflowError]] { Async::pure(Err(WorkflowError::StepFailed("x", "fail"))) }
+  let wrapped = cb.wrap(fail_handler)
+  let _ = wrapped(Json::null()).run() // fail 1
+  let _ = wrapped(Json::null()).run() // fail 2 → circuit opens
+  let r3 = wrapped(Json::null()).run() // rejected
+  assert_true(r3 is Err(_))
+}
+
+/// T79: Bulkhead rejects when at capacity.
+test "T79: bulkhead rejects" {
+  let bh = PatternBulkhead::new(1)
+  let handler : StepExecutor = fn(_i : Json) -> Async[Result[Json, WorkflowError]] { Async::pure(Ok(Json::null())) }
+  let wrapped = bh.wrap(handler)
+  let r1 = wrapped(Json::null()).run() // ok
+  let r2 = wrapped(Json::null()).run() // rejected
+  assert_true(r1 is Ok(_))
+  assert_true(r2 is Err(_))
+}
+
+/// T77: Engine tracks metrics.
 test "T77: engine metrics" {
   let storage = MemoryStorage::new()
   let engine = Engine::new(storage)
