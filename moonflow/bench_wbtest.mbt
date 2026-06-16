@@ -83,6 +83,17 @@ test "T59: metrics stress" {
 /// T73: Priority comparison — Critical > Normal.
 /// T74: Workflow global timeout exceeded.
 /// T75: retry_delay_ms simulated sleep.
+/// T76: FileStorage flush and load from disk.
+test "T76: file storage flush" {
+  let fs = FileStorage::new("/tmp/moonflow-test")
+  let id = WorkflowId::new("fs-test")
+  let _ = fs.save_event(id, WorkflowEvent::WorkflowStarted(id, "test", Json::null(), Int64::from_int(1))).run()
+  fs.flush()
+  let loaded = fs.load_events(id).run().unwrap()
+  assert_true(loaded.length() > 0)
+}
+
+/// T75: retry_delay_ms simulated sleep.
 test "T75: retry delay sleep" {
   let cfg = StepConfig::with_all("retry-test", 3, 10000, 100)
   assert_eq(cfg.retry_delay_ms, 100)
