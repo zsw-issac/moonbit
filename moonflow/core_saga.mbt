@@ -51,6 +51,38 @@ pub fn[S : Storage] Saga::new(engine : Engine[S], storage : S, name : String) ->
   { engine, storage, steps: [], saga_name: name }
 }
 
+/// Set a global retry config for saga steps. If a step fails, retries up to max_retry
+/// times before triggering compensation.
+pub fn[S : Storage] Saga::execute_with_retry(
+  self : Saga[S], input : Json, max_retry : Int
+) -> Async[Result[Json, WorkflowError]] {
+  let mut current_input = input
+  let completed_indices : Array[Int] = Array::new()
+  for i = 0; i < self.steps.length(); i = i + 1 {
+    let step = self.steps[i]
+    let handler : StepExecutor = step.forward
+    let result = retry_until(handler, current_input, max_retry)
+    match result {
+      Ok(output) => { current_input = output; completed_indices.push(i) }
+      Err(err) => {
+        let _ = self.compensate(completed_indices, current_input)
+        return Async::pure(Err(err))
+      }
+    }
+  }
+  Async::pure(Ok(current_input))
+}
+
+fn retry_until(handler : StepExecutor, input : Json, max_retry : Int) -> Result[Json, WorkflowError] {
+  let mut attempt = 0
+  let mut last_result : Result[Json, WorkflowError]? = None
+  while attempt <= max_retry {
+    let result = handler(input).run()
+    match result { Ok(_) => return result; Err(_) => { last_result = Some(result); attempt = attempt + 1 } }
+  }
+  match last_result { Some(r) => r; None => Err(WorkflowError::StepFailed("retry", "no attempts")) }
+}
+
 ///|
 /// Add a step to the saga with its forward and compensating actions.
 pub fn[S : Storage] Saga::step(
