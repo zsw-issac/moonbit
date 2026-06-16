@@ -97,6 +97,29 @@ test "T78: circuit breaker opens" {
 }
 
 /// T79: Bulkhead capacity and active count.
+/// T80: Concurrent signal — multiple signals in sequence.
+test "T80: concurrent signals" {
+  let storage = MemoryStorage::new()
+  let engine = Engine::new(storage)
+  engine.register("s", fn(i : Json) -> Async[Result[Json, WorkflowError]] { Async::pure(Ok(i)) })
+  let wf = workflow("sig-seq")
+    .wait_signal("w1", "approve")
+    .wait_signal("w2", "confirm")
+    .then("s", StepConfig::default("s"))
+    .build()
+
+  let r = Async::run(engine.start(wf, Json::null()))
+  assert_true(r is Ok(_))
+  let wf_id_str = r.unwrap().value
+
+  // Send first signal
+  engine.signal(wf_id_str, "approve")
+  // Second signal not sent yet — workflow stuck at w2
+  // Resend to show signal doesn't crash
+  engine.signal(wf_id_str, "approve")
+}
+
+/// T79: Bulkhead capacity and active count.
 test "T79: bulkhead capacity" {
   let bh = PatternBulkhead::new(5)
   assert_eq(bh.max_concurrent, 5)
