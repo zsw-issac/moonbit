@@ -84,6 +84,15 @@ test "T59: metrics stress" {
 /// T74: Workflow global timeout exceeded.
 /// T75: retry_delay_ms simulated sleep.
 /// T76: FileStorage flush and load from disk.
+/// T77: Engine tracks metrics.
+test "T77: engine metrics" {
+  let storage = MemoryStorage::new()
+  let engine = Engine::new(storage)
+  engine.metrics.record_start()
+  assert_eq(engine.metrics.total_started, 1)
+}
+
+/// T76: FileStorage flush and load from disk.
 test "T76: file storage flush" {
   let fs = FileStorage::new("/tmp/moonflow-test")
   let id = WorkflowId::new("fs-test")

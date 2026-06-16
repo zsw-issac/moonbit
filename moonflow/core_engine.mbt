@@ -9,10 +9,13 @@ pub struct Engine[S] {
   registry : Map[String, StepExecutor]
   workflow_defs : Map[String, WorkflowDef]
   signals : Map[String, Map[String, Bool]]
+  metrics : WorkflowMetrics
 }
 
+pub fn[S] Engine::metrics(self : Engine[S]) -> WorkflowMetrics { self.metrics }
+
 pub fn[S : Storage] Engine::new(storage : S) -> Engine[S] {
-  { storage, registry: Map::new(), workflow_defs: Map::new(), signals: Map::new() }
+  { storage, registry: Map::new(), workflow_defs: Map::new(), signals: Map::new(), metrics: WorkflowMetrics::new() }
 }
 
 /// Send a signal to a running workflow. The workflow must have a Signal step
