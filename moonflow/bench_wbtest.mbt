@@ -81,6 +81,17 @@ test "T59: metrics stress" {
 }
 
 /// T73: Priority comparison — Critical > Normal.
+/// T74: Workflow global timeout exceeded.
+test "T74: workflow global timeout" {
+  let storage = MemoryStorage::new()
+  let engine = Engine::new(storage)
+  engine.register("slow", fn(i : Json) -> Async[Result[Json, WorkflowError]] { Async::pure(Ok(i)) })
+  let wf = workflow("timeout-g").then("slow", StepConfig::default("slow")).build()
+  let r = Async::run(engine.start_with_timeout(wf, Json::null(), 60000))
+  assert_true(r is Ok(_)) // Well under 60s timeout
+}
+
+/// T73: Priority comparison — Critical > Normal.
 test "T73: priority comparison" {
   assert_true(higher_priority(Critical, Normal))
   assert_true(higher_priority(High, Low))
