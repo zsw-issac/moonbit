@@ -80,6 +80,15 @@ test "T59: metrics stress" {
   assert_eq(m.avg_step_time_ms() > 0.0, true)
 }
 
+/// T73: Priority comparison — Critical > Normal.
+test "T73: priority comparison" {
+  assert_true(higher_priority(Critical, Normal))
+  assert_true(higher_priority(High, Low))
+  assert_eq(higher_priority(Normal, Normal), false)
+  let opts = WorkflowOptions::default()
+  assert_eq(priority_value(opts.priority), 10)
+}
+
 /// T60: Non-regression — engine.new() is cheap.
 test "T60: engine creation cost" {
   let start = @env.now().to_int64()

@@ -36,6 +36,7 @@ pub struct WorkflowOptions {
   workflow_timeout_ms : Int
   auto_retry_on_failure : Bool
   max_parallelism : Int
+  priority : WorkflowPriority
 }
 
 pub fn WorkflowOptions::default() -> WorkflowOptions {
@@ -43,6 +44,7 @@ pub fn WorkflowOptions::default() -> WorkflowOptions {
     workflow_timeout_ms: 0,
     auto_retry_on_failure: false,
     max_parallelism: 10,
+    priority: Normal,
   }
 }
 
