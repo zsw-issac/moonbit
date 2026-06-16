@@ -82,6 +82,13 @@ test "T59: metrics stress" {
 
 /// T73: Priority comparison — Critical > Normal.
 /// T74: Workflow global timeout exceeded.
+/// T75: retry_delay_ms simulated sleep.
+test "T75: retry delay sleep" {
+  let cfg = StepConfig::with_all("retry-test", 3, 10000, 100)
+  assert_eq(cfg.retry_delay_ms, 100)
+}
+
+/// T74: Workflow global timeout exceeded.
 test "T74: workflow global timeout" {
   let storage = MemoryStorage::new()
   let engine = Engine::new(storage)
